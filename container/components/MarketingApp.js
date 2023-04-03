@@ -9,6 +9,6 @@ export default () => {
   });
 
   return (
-    <div ref={ref}></div>
+    <div ref={ref} />
   );
 };
