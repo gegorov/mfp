@@ -4,7 +4,7 @@ import { createMemoryHistory, createBrowserHistory } from 'history';
 
 import App from './App'
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
   const history = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath],
   });
@@ -12,14 +12,14 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     history.listen(onNavigate)
   }
 
-  ReactDOM.render(<App history={history} />, el)
+  ReactDOM.render(<App history={history} onSignIn={onSignIn} />, el)
 
   /* returning an object with onParentNavigate function in order to be able to call
   *  inside container to sync browsers
   */
   return {
     onParentNavigate({ pathname: nextPathname }) {
-      const { pathname } = histoey.location;
+      const { pathname } = history.location;
       console.log('container just navigated');
       console.log('Auth: nextpathName: ', nextPathname)
 
