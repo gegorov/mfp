@@ -8,7 +8,6 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   const history = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath],
   });
-
   if (onNavigate) {
     history.listen(onNavigate)
   }
@@ -20,9 +19,11 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   */
   return {
     onParentNavigate({ pathname: nextPathname }) {
+      const { pathname } = histoey.location;
       console.log('container just navigated');
+      console.log('Auth: nextpathName: ', nextPathname)
 
-      if (history.location.pathname !== nextPathname) {
+      if (pathname !== nextPathname) {
         history.push(nextPathname)
       }
     }
@@ -30,7 +31,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#_marketing-dev-root');
+  const devRoot = document.querySelector('#_auth-dev-root');
 
   if (devRoot) {
     // providing defaultHistory with BrowserHistory instead of MemoryHistory for better local devXP

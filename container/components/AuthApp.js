@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 
 export default () => {
   const ref = useRef(null);
@@ -12,7 +12,7 @@ export default () => {
       {
         initialPath: history.location.pathname,
         onNavigate: ({ pathname: nextPathname }) => {
-          console.log('container noticed navigation in Marketing', nextPathname)
+          console.log('container noticed navigation in Auth', nextPathname)
           const { pathname } = history.location;
 
           if (pathname !== nextPathname) {
@@ -20,6 +20,7 @@ export default () => {
           }
         },
       },
+
     );
 
     history.listen(onParentNavigate);
